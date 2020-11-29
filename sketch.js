@@ -41,53 +41,22 @@ function draw()
     //setting the background color
     background("black");
    
-    //controls for the car
-    if(keyDown("space"))
-   {
-    bullet.velocityX=speed;
-   }
-    //calling the function has collided and doing specific tasks
-    if(hasCollided(bullet,wall))
+     if(wall.x-bullet.x<(wall.width+bullet.width)/2)
+  {
+    bullet.velocityX=0;
+    damage=(0.5*weight*speed*speed)/(thickness*thickness*thickness);
+    console.log(speed);
+    console.log(weight);
+    console.log(damage);
+    if(damage>10)
     {
-       //value of damage
-        damage=0.5*weight*speed*speed/wallThickness*wallThickness*wallThickness 
-        bullet.velocityX=0;
-       
-       //changing the color of the wall to red if damage is greater than 10
-        if(damage>10)
-       {
-           wall.shapeColor="red";
-       } 
-      
-      //changing the color of the wall to green if the damge is less than 10
-       if(damage<10)
-       {
-           wall.shapeColor="green";
-       }
-
-
+      wall.shapeColor="red";
     }
-   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-   
-   
-   
-   //drawing the sprites
-    drawSprites();
-
-}
-    
-    //creating the function has collided
-    function hasCollided(bullet,wall)
+    else if(damage<10)
     {
-    if(wall.x-bullet.x<(wall.width+20)/2)
-    {
-        return true;
-
+      wall.shapeColor="green";
     }
-
-    return false;
     
-
-
+  }
+  drawSprites();
 }
